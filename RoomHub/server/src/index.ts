@@ -34,4 +34,27 @@ export async function appRoutes(app: FastifyInstance){
             }
         })
     })
+
+    app.put('/update/:id', async (request) => {
+        const { id } = request.params;
+      
+        const updateReserve = z.object({
+          title: z.string(),
+          author: z.string(),
+          status: z.boolean(),
+        });
+        
+        const { title, author, status } = updateReserve.parse(request.body);
+        
+        await prisma.reserve.update({
+          where: { id: parseInt(id) },
+          data: {
+            title,
+            author,
+            status,
+          },
+        });
+      
+        return { message: 'Reserva atualizada com sucesso.' };
+      });
 }

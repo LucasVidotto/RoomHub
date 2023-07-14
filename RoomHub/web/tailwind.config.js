@@ -13,6 +13,10 @@ module.exports = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
         'found' : "url('https://as1.ftcdn.net/v2/jpg/05/23/57/76/1000_F_523577655_GJLIdX3s9n26qU3Ai1ixJ1ANDKrkG82t.jpg')",
       },
+      filter: {
+        'custom': 'invert(0.8) brightness(50%) sepia(100%) saturate(10000%) hue-rotate(240deg)',
+        'customr': 'invert(0.8) brightness(50%) sepia(100%) saturate(10000%) hue-rotate(20deg)',
+      },
     },
   },
   plugins: [],
