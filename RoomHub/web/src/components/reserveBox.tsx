@@ -1,5 +1,7 @@
 import { useState } from "react";
 import {AiFillCloseCircle} from "react-icons/ai";
+import jsPDF from 'jspdf';
+import { Doc } from "@/app/reserve/doc";
 
 interface Props{
     onClick: () => void;
@@ -17,8 +19,35 @@ export default function BoxReserve({onClick}: Props){
             setActive(true)
             setNum(0)
         }
-        return active;
+        generatePDF();
     }
+      const generatePDF = () => {
+        const doc = new jsPDF();
+        doc.setFontSize(20);
+        doc.text('Documento para Reserva de Sala', 50, 15);
+        doc.setFontSize(16);
+        doc.setTextColor(88, 88, 88);
+        doc.text('Caros,', 15, 50);
+        doc.setTextColor(0, 0, 0);
+        doc.setFontSize(12);
+        doc.text(`${Doc[0].subject}`, 15, 55);
+      
+        // Obter altura da página
+        const pageHeight = doc.internal.pageSize.getHeight();
+      
+        // Posicionar o texto "Assinar" no final da página
+        doc.setTextColor(0, 0, 0);
+        const signatureText = 'Assinar: _____________________________';
+        const signatureTextWidth = doc.getTextWidth(signatureText);
+        const signatureTextX = doc.internal.pageSize.getWidth() - signatureTextWidth - 15;
+        const signatureTextY = pageHeight - 15;
+      
+        doc.setFontSize(10);
+        doc.text(signatureText, signatureTextX, signatureTextY);
+      
+        doc.save('documento.pdf');
+      };      
+
     return(
         <>
             <div className="absolute top-14 left-[50%] -translate-x-[50%] flex-row max-w-[380px] max-h-96 w-[380px] h-96 bg-black bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-80 border-solid border-2 border-white rounded-xl">
