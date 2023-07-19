@@ -9,7 +9,7 @@ export async function appRoutes(app: FastifyInstance){
             where: {
                 title: {
                     startsWith: 'Sala'
-                }
+                }   
             }
         })
         return reserve

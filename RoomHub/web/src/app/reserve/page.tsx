@@ -31,7 +31,7 @@ export default function Reserve(){
       const id = clicked[index].id;
       const data = {
         title: clicked[index].title,
-        author: "Celular",
+        author: "Ilzo",
         status: clicked[index].status,
       };
 
