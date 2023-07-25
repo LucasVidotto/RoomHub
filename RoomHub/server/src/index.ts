@@ -54,7 +54,27 @@ export async function appRoutes(app: FastifyInstance){
             status,
           },
         });
-      
         return { message: 'Reserva atualizada com sucesso.' };
+      });
+
+      app.get('/users', async (request, reply) => {
+        const { email } = request.query; // Obtém o email da query string
+      
+        try {
+          const user = await prisma.user.findUnique({
+            where: {
+              email: email,
+            },
+          });
+      
+          if (!user) {
+            return reply.status(404).send({ error: 'Usuário não encontrado.' });
+          }
+      
+          return reply.send(user);
+        } catch (error) {
+          console.error('Erro ao buscar usuário:', error);
+          return reply.status(500).send({ error: 'Erro ao buscar usuário.' });
+        }
       });
 }

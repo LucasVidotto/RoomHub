@@ -4,9 +4,9 @@ import axios from 'axios'
 import clsx from 'clsx';
 import BoxReserve from "@/components/reserveBox";
 
-const GetLink = 'http://localhost:3333/first';
+const GetLink = 'http://localhost:3333/statusrooms';
 const PostLink = 'http://localhost:3333/second';
-const PutLink = 'http://localhost:3333/update';
+const PutLink = 'http://localhost:3333/updateAccept';
 export default function Reserve(){
     const [clicked,setClicked] =useState([]);
     const [disable, setDisable] = useState(true);
@@ -18,31 +18,31 @@ export default function Reserve(){
         })
     },[])
 
-    const handlerStatusCLicked = (index:number)=>{
-        const upadatedClicked = [...clicked];
-        upadatedClicked[index].status = !clicked[index].status;
-        setClicked(upadatedClicked);
-        handlePutClicked(index);
-    }
+    const handlerStatusCLicked = (index: number) => {
+      const updatedClicked = [...clicked];
+      updatedClicked[index].status = !clicked[index].status;
+      setClicked(updatedClicked);
+      handlePutClicked(clicked[index].id, updatedClicked[index]);
+    };
+    
     const handlerClosedClick = () =>{
       setClosed(true)
     }
     const handlePutClicked = (index) => {
-      const id = clicked[index].id;
+      const id = clicked[index -1].id ;
       const data = {
         title: clicked[index].title,
-        author: "Ilzo",
-        status: clicked[index].status,
+        author: 'Atoa',
+        status: clicked[index - 1].status,
       };
-
-     
-  
-      axios.put(`${PutLink}/${id}`, data)
+      axios
+        .put(`${PutLink}/${id}`, data)
         .then((response) => {
-          console.log('Atualizado com sucesso:', response.data);
+          console.log("Atualizado com sucesso:", response.data);
+          console.log(data.status)
         })
         .catch((error) => {
-          console.error('Erro:', error);
+          console.error("Erro:", error);
         });
     };
      return (
