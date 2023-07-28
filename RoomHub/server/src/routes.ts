@@ -97,7 +97,7 @@ const routes = (app: FastifyInstance, opts: any, done: () => void) => {
       title: z.string(),
       author: z.string(),
       status: z.boolean(),
-    });
+    }); 
   
     try {
       const { title, author, status } = updateReserve.parse(request.body);
