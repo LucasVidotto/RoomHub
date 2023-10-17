@@ -1,0 +1,26 @@
+{
+  "name": "back_ias",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node index.js",
+    "start" : "node chatgpt.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "docparser-node": "^1.2.2",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "fastify": "^4.21.0",
+    "form-data": "^4.0.0",
+    "fs": "^0.0.1-security",
+    "node-wit": "^6.6.0",
+    "openai": "^3.1.0",
+    "pdf-parse": "^1.1.1"
+  }
+}
